@@ -67,7 +67,11 @@ plot(asl~datetime, data=ACC_GPS_4075_clean, type="l")
 
 ACC_GPS_merge_4078$datetime<- as.POSIXct(strptime(ACC_GPS_merge_4078$datetime, format="%Y-%m-%d %H:%M:%S"))
 
+
+
 #no cleaning needed
+ACC_GPS_4078_clean<- ACC_GPS_merge_4078
+
 plot(speed~datetime, data=ACC_GPS_merge_4078, type="l")
 
 
@@ -79,13 +83,15 @@ plot(speed~datetime, data=ACC_GPS_merge_4078, type="l")
 ACC_GPS_merge_4079$datetime<- as.POSIXct(strptime(ACC_GPS_merge_4079$datetime, format="%Y-%m-%d %H:%M:%S"))
 
 #no cleaning needed
+ACC_GPS_4079_clean<- ACC_GPS_merge_4079
+
 plot(speed~datetime, data=ACC_GPS_merge_4079, type="l")
 
 
 
 
 
-###4084 flight####
+###4084 clean####
 #setwd("C:/Users/Jessica/Google Drive/Waldrapp/data")
 #ACC_new_4=read.csv("ACC_new_4084.csv", sep=",", dec=".",header=T)
 
