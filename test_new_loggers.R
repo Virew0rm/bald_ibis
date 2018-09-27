@@ -8,4 +8,7 @@ names(dat)<- c("ms", "p", "t", "alt", "ms2", "gx", "gy", "gz" , "x", "y", "z", "
 
 head(dat)
 
-plot(dat$alt~dat$ms, type="l")
+dat1<- subset(dat, ms>=(500))
+dat1<- subset(dat1, ms<=(8000))
+
+plot(dat1$z~dat1$ms, type="l")
