@@ -54,10 +54,10 @@ ACC_GPS_4084_flight<- subset(ACC_GPS_merge_4084, datetime<=as.POSIXct("2014-08-3
 ####4075 clean####
 ACC_GPS_merge_4075$datetime<- as.POSIXct(strptime(ACC_GPS_merge_4075$datetime, format="%Y-%m-%d %H:%M:%S"))
 
-#ACC_GPS_4075_clean<- subset(ACC_GPS_merge_4075, datetime>=as.POSIXct("2014-08-28 07:39:59"))
-ACC_GPS_4075_clean<- subset(ACC_GPS_merge_4075, datetime<=as.POSIXct("2014-08-28 15:55:11"))
+ACC_GPS_4075_clean<- subset(ACC_GPS_merge_4075, datetime>=as.POSIXct("2014-08-28 06:00:00"))
+ACC_GPS_4075_clean<- subset(ACC_GPS_4075_clean, datetime<=as.POSIXct("2014-08-28 15:55:11"))
 
-plot(asl~datetime, data=ACC_GPS_4075_clean, type="l")
+plot(z~datetime, data=ACC_GPS_4075_clean, type="l")
 
 
 
@@ -70,9 +70,9 @@ ACC_GPS_merge_4078$datetime<- as.POSIXct(strptime(ACC_GPS_merge_4078$datetime, f
 
 
 #no cleaning needed
-ACC_GPS_4078_clean<- ACC_GPS_merge_4078
+ACC_GPS_4078_clean<- subset(ACC_GPS_merge_4078, datetime>=as.POSIXct("2014-08-28 06:00:00"))
 
-plot(speed~datetime, data=ACC_GPS_merge_4078, type="l")
+plot(z~datetime, data=ACC_GPS_4078_clean, type="l")
 
 
 
