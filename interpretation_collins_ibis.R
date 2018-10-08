@@ -13,6 +13,8 @@ getwd()
 
 Data<-read.csv(file.choose(),stringsAsFactors=FALSE)
 head(Data)
+Data<-Data[,c(-1,-6)] 
+
 Data<-Data[,c(-1,-3,-4,-5, -6)] 
 tail(Data)
 str(Data)
@@ -278,11 +280,12 @@ tail(Data)
 write.csv(Data,"Accelerometerwithbehaviours_4075.csv",row.names=FALSE)
 
 Data2$datetime<-Data2$NewTime2
-Data2_merge<-merge(Data2, ACC_GPS_merge_4079, by="datetime")
-Data2_merge<- subset(Data2_merge, NewTime2>=as.POSIXct("2014-08-28 10:28:00"))
-Data2_merge<- subset(Data2_merge, NewTime2<=as.POSIXct("2014-08-28 10:30:00"))
+Data2_merge<-merge(Data2, ACC_GPS_merge_4075, by="datetime")
+Data2_merge<- subset(Data2_merge, NewTime2>=as.POSIXct("2014-08-28 07:39:59"))
+Data2_merge<- subset(Data2_merge, NewTime2<=as.POSIXct("2014-08-28 13:34:45"))
 Data2_merge$behaviour<-as.factor(Data2_merge$behaviour)
 par(mfrow=c(3,1))
+
 plot(z.x~NewTime2, data=Data2_merge,col = Data2_merge$behaviour, type="l")
 plot(asl~NewTime2, data=Data2_merge,col = Data2_merge$behaviour, type="l")
 plot(speed~NewTime2, data=Data2_merge,col = Data2_merge$behaviour, type="l")
@@ -308,3 +311,28 @@ plot(asl~datetime, data=ACC_GPS_merge_4075, col=ACC_GPS_merge_4075$behaviour, ty
 
 library("ggplot2")
 ggplot(data = ACC_GPS_merge_4075, aes(x=datetime, y=y)) + geom_line(aes(colour=ACC_GPS_merge_4075$behaviour))
+
+
+#####comparing the axes with each other in one graph#####
+
+setEPS()
+postscript("4075_axis_comparison.eps")
+par(mfrow=c(3,1))
+plot(x.x~datetime, data=Data2_merge,col="red", type="l")
+plot(y.x~datetime, data=Data2_merge,col="darkblue", type="l")
+plot(z.x~datetime, data=Data2_merge, col="darkgreen", type="l")
+
+dev.off()
+
+
+#####trying to put ODBA in the mix as a second option to look for significant differences#####
+
+Data2$datetime<-Data2$NewTime2
+Data2_merge<-merge(Data2, ACC_GPS_merge_4075, by="datetime")
+Data2_merge<- subset(Data2_merge, NewTime2>=as.POSIXct("2014-08-28 07:39:59"))
+Data2_merge<- subset(Data2_merge, NewTime2<=as.POSIXct("2014-08-28 13:34:45"))
+
+par(mfrow=c(3,1))
+plot(ODBA~datetime, data=Data2_merge)
+plot(z.x~datetime, data=Data2_merge)
+plot(asl~datetime, data=Data2_merge)
