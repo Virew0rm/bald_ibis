@@ -314,7 +314,10 @@ ggplot(data = ACC_GPS_merge_4075, aes(x=datetime, y=y)) + geom_line(aes(colour=A
 
 
 #####comparing the axes with each other in one graph#####
-
+Data2$datetime<-Data2$NewTime2
+Data2_merge<-merge(Data2, ACC_GPS_merge_4075, by="datetime")
+Data2_merge<- subset(Data2_merge, NewTime2>=as.POSIXct("2014-08-28 06:00:00"))
+Data2_merge<- subset(Data2_merge, NewTime2<=as.POSIXct("2014-08-28 15:00:00"))
 setEPS()
 postscript("4075_axis_comparison.eps")
 par(mfrow=c(3,1))
@@ -329,10 +332,15 @@ dev.off()
 
 Data2$datetime<-Data2$NewTime2
 Data2_merge<-merge(Data2, ACC_GPS_merge_4075, by="datetime")
-Data2_merge<- subset(Data2_merge, NewTime2>=as.POSIXct("2014-08-28 07:39:59"))
-Data2_merge<- subset(Data2_merge, NewTime2<=as.POSIXct("2014-08-28 13:34:45"))
+Data2_merge<- subset(Data2_merge, NewTime2>=as.POSIXct("2014-08-28 06:00:00"))
+Data2_merge<- subset(Data2_merge, NewTime2<=as.POSIXct("2014-08-28 16:00:00"))
 
+
+setEPS()
+postscript("4075_ODBA_z_asl_comparison.eps")
 par(mfrow=c(3,1))
-plot(ODBA~datetime, data=Data2_merge)
-plot(z.x~datetime, data=Data2_merge)
-plot(asl~datetime, data=Data2_merge)
+plot(ODBA~datetime, data=Data2_merge, type="l")
+plot(z.x~datetime, data=Data2_merge, col="darkgreen", type="l")
+plot(asl~datetime, data=Data2_merge, type="l")
+
+dev.off()
