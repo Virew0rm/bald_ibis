@@ -38,7 +38,6 @@ ggplot(data=ACC_GPS_4075_gr, aes(x=time.y, y=z))+
 dev.off()
 
 
-
 #plotting start phase with speed ggplot####
 setEPS()
 postscript("first_start_with_speed_4075_2014_08_28.eps")
