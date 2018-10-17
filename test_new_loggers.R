@@ -1,3 +1,5 @@
+#with existing data in csv and already converted it is easy#####
+#see the conversion from txt to csv and raw data to columns below####
 setwd("C:/Users/Jessica/Google Drive/Waldrapp/data")
 dat=read.table("TEST_12.08.2018_1.csv", sep=",", dec=".", fill=T, header=F)
 head(dat)
@@ -5,9 +7,7 @@ head(dat)
 dat<- dat[, c(2, 4, 6, 8, 10, 12,14 ,16,18, 19, 20, 22, 23, 24)]
 
 names(dat)<- c("ms", "p", "t", "alt", "ms2", "gx", "gy", "gz" , "x", "y", "z", "mx", "my", "mz")
-
 head(dat)
-
 dat1<- subset(dat, ms>=(500))
 dat1<- subset(dat1, ms<=(8000))
 
@@ -40,33 +40,65 @@ names(dat)<- c("ms", "p", "t", "alt", "ms2", "gx", "gy", "gz" , "x", "y", "z", "
 
 
 
-#test logger lying down####
+#test logger raw data to readable data####
 setwd("C:/Users/Jessica/Google Drive/Waldrapp/data")
+
+#converting the text file into a csv
 fname=read.delim("test_ld.txt")
 write.table(fname, file="test_ld_(2).csv", sep=",", dec=".")
-
 dat_ld=read.csv("test_ld_(2).csv" ,sep=",",header=F, skip=28)
+#deleting the first column because it does not contain any data
 dat_ld=dat_ld[, -1]
 head(dat_ld)
 
+#converting the 
 dat_ld<- as.data.frame(dat_ld)
 
 dat_ld$dat_ld<-as.character(dat_ld$dat_ld)
 
 dat_nld=NA
 
-dat_nld$ms<- as.numeric(paste(substr(as.character(dat_ld[2,]),3,5)))
-dat_nld$gX<- as.numeric(paste(substr(as.character(dat_ld[2,]),9,10)))
-dat_nld$gY<- as.numeric(paste(substr(as.character(dat_ld[2,]),14,14)))
-dat_nld$gZ<- as.numeric(paste(substr(as.character(dat_ld[2,]),18, 18)))
-dat_nld$x<- as.numeric(paste(substr(as.character(dat_ld[2,]),22,28)))
-dat_nld$y<- as.numeric(paste(substr(as.character(dat_ld[2,]),29,35)))
-dat_nld$z<- as.numeric(paste(substr(as.character(dat_ld[2,]),36,42)))
+###first extraction try and error
+#dat_nld$ms<- as.numeric(paste(substr(as.character(dat_ld[2,]),3,5)))
+#dat_nld$gX<- as.numeric(paste(substr(as.character(dat_ld[2,]),9,10)))
+#dat_nld$gY<- as.numeric(paste(substr(as.character(dat_ld[2,]),14,14)))
+#dat_nld$gZ<- as.numeric(paste(substr(as.character(dat_ld[2,]),18, 18)))
+#dat_nld$x<- as.numeric(paste(substr(as.character(dat_ld[2,]),22,28)))
+#dat_nld$y<- as.numeric(paste(substr(as.character(dat_ld[2,]),29,35)))
+#dat_nld$z<- as.numeric(paste(substr(as.character(dat_ld[2,]),36,42)))
 
-
+#putting all the values in one column below each other
 dat_sld<-data.frame(unlist(strsplit(dat_ld$dat_ld, " ")))
+
+#removing all the empty spaces, datapoints are one long factor now
 dat_nsld<-dat_sld[!apply(dat_sld == "", 1, all),]
-###funktioniert noch nicht dat_nsld<-dat_nsld[!apply(dat_sld == "A:", 1, all),]
+
+#creating a new empty vector
+#dat_nl=NA
+#and converting it into a dataframe
+#dat_nl<- as.data.frame(dat_nl)
+
+#grab all variable containing ms 
+ms<- grep("ms", dat_nsld)
+ms<-dat_nsld[ms]
+#splitting of the first ms variable
+ms1<- ms[seq(1, length(ms), 2)]
+dat_nl$ms1<- unlist(ms1)
+
+#grab all variables containing p
+p<-grep("p", dat_nsld)
+dat_nl$p<-dat_nsld[p]
+
+#grab all variables containing t
+t<- grep("t", dat_nsld)
+dat_nl$t<- dat_nsld[t]
+
+  
+ms2<- ms[seq(2, length(ms), 2)]
+
+
+
+
 
 
 dat_sld
@@ -77,4 +109,4 @@ dat_sld<-as.data.frame(dat_sld)
 dat_sld[1]
 
 head(dat_nsld, 50)
-tail(dat_ld)
+tail(dat_nsld, 50)
