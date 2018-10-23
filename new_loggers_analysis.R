@@ -7,7 +7,10 @@ head(dat)
 
 plot(dat$Z~dat$ms2)
 
-dat<- subset(dat, dat$ms2>100000& dat$ms2<1000000)
+dat<- subset(dat, dat$ms2>60000& dat$ms2<1240000)
+
+mean(dat$Z)
+sd(dat$Z)
 
 apply(dat, 2, mean)
 apply(dat, 2, sd)
@@ -16,7 +19,14 @@ apply(dat, 2, sd)
 
 head(dat_ld)
 
-dat_ldn<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 03:17:00")& dat_ld$xms2<=as.POSIXct("2018-10-22 03:18:00"))
+plot(Z~xms2, data=dat_ld)
+
+#main file to determine the sitting phases
+dat_ldn<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 02:12:30")& dat_ld$xms2<=as.POSIXct("2018-10-22 02:16:00"))
+
+dat_ldn1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 02:12:30")& dat_ld$xms2<=as.POSIXct("2018-10-22 02:16:00"))
+
+
 
 head(dat_ldn)
 
