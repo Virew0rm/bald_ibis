@@ -16,3 +16,4 @@ summary(clust4075_flight)
 
 plot(clust4075_flight, what = "density", type = "persp") 
 
+?Mclust
