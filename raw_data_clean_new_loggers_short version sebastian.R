@@ -45,7 +45,10 @@ dat_ld$gY<- as.numeric(dat_ld$gY)
 dat_ld$gZ<- as.numeric(dat_ld$gZ)
 dat_ld$X<- as.numeric(dat_ld$X)
 dat_ld$Y<- as.numeric(dat_ld$Y)
-dat_ld$Z<- as.numeric(dat_ld$Z)
+dat_ld$mZ<- as.numeric(dat_ld$Z)
+dat_ld$mX<- as.numeric(dat_ld$mX)
+dat_ld$mY<- as.numeric(dat_ld$mY)
+dat_ld$mZ<- as.numeric(dat_ld$mZ)
 
 dat_ld<-na.omit(dat_ld)
 
