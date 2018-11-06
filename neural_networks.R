@@ -1,5 +1,5 @@
 #either load data from file or existing dataframe
-setwd("C:/Users/Jessica/Google Drive/Waldrapp/data")
+setwd("C:/Users/cornilsj/Dropbox/jessi_und_franz/r/bald ibis")
 #####get a fake test data set
 dat<- read.csv("test_nl.csv")
 
@@ -113,4 +113,7 @@ set.seed(2)
 NN=neuralnet(lying+sitting+flying~X+Y+Z, trainNN, linear.output=T, rep=2)
 
 plot(NN)
+
+
+predict_testNN<- compute (NN, testNN)
   
