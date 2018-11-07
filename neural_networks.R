@@ -1,5 +1,5 @@
 #either load data from file or existing dataframe
-setwd("C:/Users/Jessica/Google Drive/Waldrapp/data")
+setwd("C:/Users/cornilsj/Dropbox/jessi_und_franz/r/bald ibis")
 #####get a fake test data set
 dat<- read.csv("test_nl.csv")
 
@@ -125,6 +125,12 @@ set.seed(2)
 NN=neuralnet(lying+sitting+flying~X+Y+Z, trainNN, linear.output=T, rep=2, hidden=5)
 
 plot(NN)
+<<<<<<< HEAD
+
+
+predict_testNN<- compute (NN, testNN)
+  
+=======
   
 
 predict_testNN<- compute(NN, testNN[, c(9:11)])
@@ -149,3 +155,4 @@ pred <- c('setosa', 'versicolor', 'virginica')
 table(pred, irisvalid$Species)
 
 
+>>>>>>> bc9e9e012578c70387d52acd8ccb5d6d1084cbb6
