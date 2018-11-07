@@ -3,13 +3,16 @@ setwd("C:/Users/Jessica/Google Drive/Waldrapp/data")
 
 #converting the text file into a csv
 dat_ld=read.table("TEST_12.08.2018_1.txt", skip=28,fill=T, header=F)
+dat_ld=read.table("test_gopro.txt",skip=7, fill=T, header=F)
+#dat_ld=dat_ld[-58529,]
+head(dat_ld)
+
 
 
 #converting the 
 dat_ld1 <- dat_ld[seq(1,length(dat_ld[,1]),2),1:4]
 dat_ld2 <- dat_ld[seq(2,length(dat_ld[,1]),2),]
 
-head(dat_ld)
 
 dat_ld <- cbind(dat_ld1, dat_ld2)
 dat_ld<- dat_ld[c(-9, -13)]
@@ -45,7 +48,7 @@ dat_ld$gY<- as.numeric(dat_ld$gY)
 dat_ld$gZ<- as.numeric(dat_ld$gZ)
 dat_ld$X<- as.numeric(dat_ld$X)
 dat_ld$Y<- as.numeric(dat_ld$Y)
-dat_ld$mZ<- as.numeric(dat_ld$Z)
+dat_ld$Z<- as.numeric(dat_ld$Z)
 dat_ld$mX<- as.numeric(dat_ld$mX)
 dat_ld$mY<- as.numeric(dat_ld$mY)
 dat_ld$mZ<- as.numeric(dat_ld$mZ)
