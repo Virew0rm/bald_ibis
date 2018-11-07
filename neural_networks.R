@@ -11,7 +11,7 @@ plot(dat$Z~dat$ms2)
 dat<- subset(dat, dat$ms2>60000& dat$ms2<1240000)
 
 dat$xms2<-format(as.POSIXct("2018-10-10")+dat$ms2/1000, "%H:%M:%S")
-dat$xms2<- as.POSIXct(strptime(dat$xms2, format="%H:%M:%S"))
+dat$xms2<-as.POSIXct(strptime(dat$xms2, format="%H:%M:%S"))
 
 head(dat)
 dat$behaviour<- "lying"
