@@ -24,22 +24,22 @@ apply(dat, 2, sd)
 
 head(dat_ld)
 
-plot(Z~xms2, data=dat_ld)
-
 #convert ms into hours for a more intuitive graph
 dat_ld$xms2<-format(as.POSIXct(Sys.Date(), tz="GMT")+dat_ld$ms2/1000, "%H:%M:%S")
 dat_ld$xms2<- as.POSIXct(strptime(dat_ld$xms2, format="%H:%M:%S"))
-
+dat_ld$Z<- as.numeric(dat_ld$Z)
+plot(Z~xms2, data=dat_ld)
 #main file to determine the sitting phases
-dat_ldn<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 06:00:00")& dat_ld$xms2<=as.POSIXct("2018-10-22 07:00:00"))
+dat_ldn<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-02 00:00:00")& dat_ld$xms2<=as.POSIXct("2018-11-02 06:00:00"))
+dat_ldn$Z<- as.numeric(dat_ldn$Z)
 plot(Z~xms2, data=dat_ldn)
 
 #"sitting phases" in the datafile
-dat_ldn1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 02:12:30")& dat_ld$xms2<=as.POSIXct("2018-10-22 02:16:00"))
-dat_ldn2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 03:08:46")& dat_ld$xms2<=as.POSIXct("2018-10-22 03:10:55"))
-dat_ldn3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 03:11:20")& dat_ld$xms2<=as.POSIXct("2018-10-22 03:15:25"))
-dat_ldn4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 03:16:45")& dat_ld$xms2<=as.POSIXct("2018-10-22 03:18:34"))
-dat_ldn5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-10-22 03:21:45")& dat_ld$xms2<=as.POSIXct("2018-10-22 03:22:20"))
+dat_ldn1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-02 02:12:30")& dat_ld$xms2<=as.POSIXct("2018-11-02 02:16:00"))
+dat_ldn2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-02 03:08:46")& dat_ld$xms2<=as.POSIXct("2018-11-02 03:10:55"))
+dat_ldn3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-02 03:11:20")& dat_ld$xms2<=as.POSIXct("2018-11-02 03:15:25"))
+dat_ldn4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-02 03:16:45")& dat_ld$xms2<=as.POSIXct("2018-11-02 03:18:34"))
+dat_ldn5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-02 03:21:45")& dat_ld$xms2<=as.POSIXct("2018-11-02 03:22:20"))
 
 #turns out the variance is huge
 dat_new<-rbind (dat_ldn1, dat_ldn2,dat_ldn3,dat_ldn4, dat_ldn5)
@@ -50,9 +50,10 @@ dat_new45<-rbind(dat_ldn4, dat_ldn5)
 dat_new45$behaviour<- "sitting"
 dat_new$behaviour<- "sitting"
 
-
+summary(dat_new)
 #checking if it looks ok
 head(dat_new45)
+dat_new$Z<- as.numeric(dat_new$Z)
 plot(Z~xms2, data=dat_new)
 
 mean(dat_new45$Z)
