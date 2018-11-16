@@ -1,8 +1,9 @@
 ####first dataset####
 #either load data from file or existing dataframe
 setwd("C:/Users/cornilsj/Dropbox/jessi_und_franz/r/bald ibis")
+
 #####get a fake test data set
-dat<- read.csv("test_nl.csv")
+dat<- read.csv("testsatz2.csv")
 
 #checking the test dataset and cutting off all movement
 head(dat)
@@ -42,22 +43,22 @@ dat_ldn<-na.omit( subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 00:00:00")&
 plot(Z~xms2, data=dat_ldn)
 
 #"sitting phases" in the datafile
-dat_ldn1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 01:12:30")& dat_ld$xms2<=as.POSIXct("2018-11-05 01:16:00"))
-dat_ldn2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:08:46")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:10:55"))
-dat_ldn3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:11:20")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:15:25"))
-dat_ldn4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:16:45")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:18:34"))
-dat_ldn5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:21:45")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:22:20"))
+dat_ldn1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 01:12:30")& dat_ld$xms2<=as.POSIXct("2018-11-06 01:16:00"))
+dat_ldn2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:08:46")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:10:55"))
+dat_ldn3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:11:20")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:15:25"))
+dat_ldn4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:16:45")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:18:34"))
+dat_ldn5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:21:45")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:22:20"))
 #binding them all together
 dat_sit<-rbind (dat_ldn1, dat_ldn2,dat_ldn3,dat_ldn4, dat_ldn5)
 plot(Z~xms2, data=dat_sit)
 
 #extracting only "flying" phases in the datafile
-dat_fly1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 01:00:00")& dat_ld$xms2<=as.POSIXct("2018-11-05 01:12:30"))
-dat_fly2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 01:16:00")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:08:46"))
-dat_fly3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:10:55")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:11:20"))
-dat_fly4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:15:25")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:16:45"))
-dat_fly5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:18:34")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:21:45"))
-dat_fly6<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:22:20")& dat_ld$xms2<=as.POSIXct("2018-11-05 05:50:00"))
+dat_fly1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 01:00:00")& dat_ld$xms2<=as.POSIXct("2018-11-06 01:12:30"))
+dat_fly2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 01:16:00")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:08:46"))
+dat_fly3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:10:55")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:11:20"))
+dat_fly4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:15:25")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:16:45"))
+dat_fly5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:18:34")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:21:45"))
+dat_fly6<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:22:20")& dat_ld$xms2<=as.POSIXct("2018-11-06 05:50:00"))
 
 dat_fly<-rbind (dat_fly1, dat_fly2,dat_fly3,dat_fly4, dat_fly5, dat_fly6)
 plot(Z~xms2, data=dat_fly, type="l")
@@ -137,7 +138,6 @@ plot(NN)
 
 predict_testNN<- compute (NN, testNN)
   
-
 
 predict_testNN<- compute(NN, testNN[, c(9:11)])
 predict_testNN = (predict_testNN$net.result * (max(dat_all$behaviour) - min(dat_all$behaviour))) + min(dat_all$behaviour)
