@@ -1,9 +1,8 @@
 ####first dataset####
 #either load data from file or existing dataframe
 setwd("C:/Users/cornilsj/Dropbox/jessi_und_franz/r/bald ibis")
-
 #####get a fake test data set
-dat<- read.csv("testsatz2.csv")
+dat<- read.csv("test_nl.csv")
 
 #checking the test dataset and cutting off all movement
 head(dat)
@@ -27,7 +26,7 @@ apply(dat, 2, sd)
 var.test(dat_ldn5$Z, dat$Z)
 
 
-#####second dataset: getting real datas#### 
+#####second dataset: getting real data#### 
 
 head(dat_ld)
 plot(Z~xms2, data=dat_ld, type="l")
@@ -43,22 +42,22 @@ dat_ldn<-na.omit( subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 00:00:00")&
 plot(Z~xms2, data=dat_ldn)
 
 #"sitting phases" in the datafile
-dat_ldn1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 01:12:30")& dat_ld$xms2<=as.POSIXct("2018-11-06 01:16:00"))
-dat_ldn2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:08:46")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:10:55"))
-dat_ldn3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:11:20")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:15:25"))
-dat_ldn4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:16:45")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:18:34"))
-dat_ldn5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:21:45")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:22:20"))
+dat_ldn1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 01:12:30")& dat_ld$xms2<=as.POSIXct("2018-11-05 01:16:00"))
+dat_ldn2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:08:46")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:10:55"))
+dat_ldn3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:11:20")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:15:25"))
+dat_ldn4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:16:45")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:18:34"))
+dat_ldn5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:21:45")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:22:20"))
 #binding them all together
 dat_sit<-rbind (dat_ldn1, dat_ldn2,dat_ldn3,dat_ldn4, dat_ldn5)
 plot(Z~xms2, data=dat_sit)
 
 #extracting only "flying" phases in the datafile
-dat_fly1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 01:00:00")& dat_ld$xms2<=as.POSIXct("2018-11-06 01:12:30"))
-dat_fly2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 01:16:00")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:08:46"))
-dat_fly3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:10:55")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:11:20"))
-dat_fly4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:15:25")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:16:45"))
-dat_fly5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:18:34")& dat_ld$xms2<=as.POSIXct("2018-11-06 02:21:45"))
-dat_fly6<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-06 02:22:20")& dat_ld$xms2<=as.POSIXct("2018-11-06 05:50:00"))
+dat_fly1<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 01:00:00")& dat_ld$xms2<=as.POSIXct("2018-11-05 01:12:30"))
+dat_fly2<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 01:16:00")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:08:46"))
+dat_fly3<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:10:55")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:11:20"))
+dat_fly4<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:15:25")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:16:45"))
+dat_fly5<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:18:34")& dat_ld$xms2<=as.POSIXct("2018-11-05 02:21:45"))
+dat_fly6<- subset(dat_ld, dat_ld$xms2>=as.POSIXct("2018-11-05 02:22:20")& dat_ld$xms2<=as.POSIXct("2018-11-05 05:50:00"))
 
 dat_fly<-rbind (dat_fly1, dat_fly2,dat_fly3,dat_fly4, dat_fly5, dat_fly6)
 plot(Z~xms2, data=dat_fly, type="l")
@@ -91,8 +90,16 @@ names(dat_all)<- c("ms1","p","temp", "alt","ms2","gX","gY", "gZ", "X", "Y", "Z",
 ####getting data from the old loggers####
 head(ACC_GPS_4075_clean)
 
-plot(ACC_GPS_4075_clean$z~ ACC_GPS_4075_clean$datetime)
+old<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$datetime>=as.POSIXct("2014-08-28 11:04:30")& ACC_GPS_4075_clean$datetime<=as.POSIXct("2014-08-28 11:32:00"))
+                                                                                                                                        
+plot(z~ datetime, data=old)
 
+old1<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$datetime>=as.POSIXct("2014-08-28 10:38:00")& ACC_GPS_4075_clean$datetime<=as.POSIXct("2014-08-28 10:45:45"))
+old2<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$datetime>=as.POSIXct("2014-08-28 10:46:26")& ACC_GPS_4075_clean$datetime<=as.POSIXct("2014-08-28 10:58:03"))
+old3<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:10:55")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 02:11:20"))
+old4<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:15:25")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 02:16:45"))
+old5<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:18:34")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 02:21:45"))
+old6<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:22:20")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 05:50:00"))
 
 dat_all$Z<-as.numeric(dat_all$Z)
 
@@ -137,7 +144,8 @@ plot(NN)
 
 
 predict_testNN<- compute (NN, testNN)
-  
+
+
 
 predict_testNN<- compute(NN, testNN[, c(9:11)])
 predict_testNN = (predict_testNN$net.result * (max(dat_all$behaviour) - min(dat_all$behaviour))) + min(dat_all$behaviour)
