@@ -77,33 +77,39 @@ dat_wiese$xms2<-format(as.POSIXct(Sys.Date(), tz="GMT")+dat_wiese$ms2/1000, "%H:
 dat_wiese$xms2<- as.POSIXct(strptime(dat_wiese$xms2, format="%H:%M:%S"))
 
 #dead
-dat_wiese1<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:05:42")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:11:22"))
-dat_wiese2<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:11:29")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:12:51"))
-dat_wiese3<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:12:53")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:14:21"))
-dat_wiese5<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:14:30")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:15:21"))
-dat_wiese7<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:15:46")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:20:42"))
+dat_wiese1<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:05:42")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:11:22"))
+dat_wiese2<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:11:29")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:12:51"))
+dat_wiese3<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:12:53")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:14:21"))
+dat_wiese5<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:14:30")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:15:21"))
+dat_wiese7<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:15:46")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:20:42"))
 dat_dead<- rbind(dat_wiese1, dat_wiese2,dat_wiese3, dat_wiese5,dat_wiese7)
 
 dat_dead$behaviour<- "dead"
 
+plot(Z~xms2, data=dat_dead)
+
 #fox
-dat_wiese4<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:14:22")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:14:29"))
-dat_wiese6<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:15:22")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:15:45"))
+dat_wiese4<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:14:22")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:14:29"))
+dat_wiese6<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:15:22")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:15:45"))
 dat_fox<- rbind(dat_wiese4,dat_wiese6)
 
 dat_fox$behaviour<- "fox"
 
+plot(Z~xms2, data=dat_fox)
+
 #freefall
-dat_wiese8<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:21:09")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:21:09"))
-dat_wiese9<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-15 01:26:08")& dat_wiese$xms2<=as.POSIXct("2018-11-15 01:26:08"))
+dat_wiese8<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:21:09")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:21:09"))
+dat_wiese9<-subset(dat_wiese, dat_wiese$xms2>=as.POSIXct("2018-11-16 01:26:08")& dat_wiese$xms2<=as.POSIXct("2018-11-16 01:26:08"))
 dat_fall<- rbind(dat_wiese8,dat_wiese9)
 
 dat_fall$behaviour<- "fall"
 
-dat_all$Z<-as.numeric(dat_all$Z)
+plot(Z~xms2, data=dat_fall)
+
+#dat_all$Z<-as.numeric(dat_all$Z)
 
 ####comparing the two values with a t.test or variance test
-t.test(dat_dead$Z, dat_sitting$Z)
+t.test(dat_dead$Z, dat_sit$Z)
 var.test(dat_dead$Z, dat_sit$Z)
 
 #####copying the two datasets together
