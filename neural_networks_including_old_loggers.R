@@ -26,7 +26,7 @@ apply(dat, 2, sd)
 var.test(dat_ldn5$Z, dat$Z)
 
 
-#####second dataset: getting real datas#### 
+#####second dataset: getting real data#### 
 
 head(dat_ld)
 plot(Z~xms2, data=dat_ld, type="l")
@@ -90,8 +90,16 @@ names(dat_all)<- c("ms1","p","temp", "alt","ms2","gX","gY", "gZ", "X", "Y", "Z",
 ####getting data from the old loggers####
 head(ACC_GPS_4075_clean)
 
-plot(ACC_GPS_4075_clean$z~ ACC_GPS_4075_clean$datetime)
+old<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$datetime>=as.POSIXct("2014-08-28 11:04:30")& ACC_GPS_4075_clean$datetime<=as.POSIXct("2014-08-28 11:32:00"))
+                                                                                                                                        
+plot(z~ datetime, data=old)
 
+old1<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$datetime>=as.POSIXct("2014-08-28 10:38:00")& ACC_GPS_4075_clean$datetime<=as.POSIXct("2014-08-28 10:45:45"))
+old2<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$datetime>=as.POSIXct("2014-08-28 10:46:26")& ACC_GPS_4075_clean$datetime<=as.POSIXct("2014-08-28 10:58:03"))
+old3<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:10:55")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 02:11:20"))
+old4<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:15:25")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 02:16:45"))
+old5<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:18:34")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 02:21:45"))
+old6<- subset(ACC_GPS_4075_clean, ACC_GPS_4075_clean$xms2>=as.POSIXct("2014-08-28 02:22:20")& ACC_GPS_4075_clean$xms2<=as.POSIXct("2014-08-28 05:50:00"))
 
 dat_all$Z<-as.numeric(dat_all$Z)
 
@@ -136,7 +144,7 @@ plot(NN)
 
 
 predict_testNN<- compute (NN, testNN)
-  
+
 
 
 predict_testNN<- compute(NN, testNN[, c(9:11)])
